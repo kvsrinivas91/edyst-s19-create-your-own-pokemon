@@ -3,15 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import json
 
-#dir(sqlite3)
-
 # Init app
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 
 #Initializing db
 db=SQLAlchemy(app)
@@ -31,7 +28,6 @@ class Pokemon(db.Model):
         self.fg=fg
         self.bg=bg
         self.desc=desc
-
 
 #Handling Error 404
 @app.errorhandler(404)  
@@ -56,7 +52,6 @@ def pokemon_post():
     fg=pokemon['cardColours']['fg']
     bg=pokemon['cardColours']['bg']
     desc=pokemon['cardColours']['desc']
-
     new_pokemon=Pokemon(name,sprite,fg,bg,desc)#Data passed from Postman
 
     db.session.add(new_pokemon)
@@ -108,8 +103,6 @@ def pokemon_patch(id):
             pokemondb.bg=pokemon['cardColours']['bg']
         if 'desc' in carColours1:    
             pokemondb.desc=pokemon['cardColours']['desc']
-
-
     
     db.session.commit()
 

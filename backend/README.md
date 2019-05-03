@@ -1,4 +1,4 @@
-#edyst-s19-create-your-own-pokemon
+# edyst-s19-create-your-own-pokemon
 A database-backed API which allows you to CREATE, READ, UPDATE and DELETE pokemon cards
 
 Backend API Spec:
