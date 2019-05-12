@@ -116,7 +116,7 @@ class test_pokemon(unittest.TestCase):
         print("____________Test pokemon patch succesfull_______")
 
     def test_pokemon_delete(self):
-        print("____________Test pokemon  succesfull_______")
+        print("____________Test pokemon delete_______")
         input_data1 = {
             "pokemon": {
                 "name": "charmander1",
