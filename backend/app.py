@@ -45,7 +45,7 @@ def page_not_found_500(e):
 
 # Create a pokemon
 @app.route("/api/pokemon", methods=["POST"])
-def pokemon_post():
+def apokemon_post():
     # Getting the json data
     pokemon = request.json["pokemon"]
     name = pokemon["name"]
@@ -76,7 +76,7 @@ def pokemon_post():
 
 # Getting Pokemon Deatails
 @app.route("/api/pokemon/<int:id>", methods=["GET"])
-def pokemon_get(id):
+def bpokemon_get(id):
     if id <= 0:
         return "Enter proper Pokemon id"
     pokemon = Pokemon.query.get(id)
@@ -101,7 +101,7 @@ def pokemon_get(id):
 
 # Update the product
 @app.route("/api/pokemon/<int:id>", methods=["PATCH"])
-def pokemon_patch(id):
+def cpokemon_patch(id):
 
     pokemondb = Pokemon.query.get(id)
     if pokemondb == None:
@@ -146,12 +146,12 @@ def pokemon_patch(id):
             },
         }
     }
-    return jsonify(new_pokemon)
+    return json.dumps(new_pokemon)
 
 
 # deleting pokemon data
 @app.route("/api/pokemon/<int:id>", methods=["DELETE"])
-def pokemon_delete(id):
+def dpokemon_delete(id):
     if id <= 0:
         return "Enter proper Pokemon id"
     pokemon = Pokemon.query.get(id)
@@ -171,7 +171,7 @@ def pokemon_delete(id):
         }
         db.session.delete(pokemon)
         db.session.commit()
-        return jsonify(pokemon_details)
+        return json.dumps(pokemon_details)
     else:
         return "Enter correct pokemon id"
 

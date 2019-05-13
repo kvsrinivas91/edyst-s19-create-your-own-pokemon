@@ -28,7 +28,7 @@ class test_pokemon(unittest.TestCase):
     def tearDownClass(self):
         db.drop_all()
 
-    def test_pokemon_post(self):
+    def test_apokemon_post(self):
         print("_____________test pokemon post________________")
         input_data = {
             "pokemon": {
@@ -59,7 +59,7 @@ class test_pokemon(unittest.TestCase):
         self.assertEqual(actual_output_data.status_code, 200)
         print("__________test pokemon post succesfull________")
 
-    def test_pokemon_get(self):
+    def test_bpokemon_get(self):
         print("_____________test pokemon get_________________")
         expected_output_data = {
             "pokemon": {
@@ -80,7 +80,7 @@ class test_pokemon(unittest.TestCase):
         self.assertEqual(actual_output_data.status_code, 200)
         print("__________test pokemon get succesfull_________")
 
-    def test_pokemon_patch(self):
+    def test_cpokemon_patch(self):
         print("____________Test pokemon patch_______")
         input_data_to_update = {
             "pokemon": {
@@ -100,7 +100,7 @@ class test_pokemon(unittest.TestCase):
         }
 
         actual_output_data_patch = self.app.patch(
-            "http://localhost:8006/api/pokemo/1n",
+            "http://localhost:8006/api/pokemon/1",
             data=json.dumps(input_data_to_update),
             content_type="application/json",
         )
@@ -115,10 +115,11 @@ class test_pokemon(unittest.TestCase):
 
         print("____________Test pokemon patch succesfull_______")
 
-    def test_pokemon_delete(self):
+    def test_dpokemon_delete(self):
         print("____________Test pokemon delete_______")
         input_data1 = {
             "pokemon": {
+                "id": 1,
                 "name": "charmander1",
                 "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
                 "cardColours": {"fg": "#eeeeee", "bg": "#3e3e3e", "desc": "#111111"},
@@ -126,7 +127,7 @@ class test_pokemon(unittest.TestCase):
         }
 
         actual_output1 = self.app.delete("http://localhost:8006/api/pokemon/1")
-        json_actual1 = json.loads(actual_output_data_patch.data)
+        json_actual1 = json.loads(actual_output1.data)
 
         self.assertEqual(json.dumps(input_data1), json.dumps(json_actual1))
         self.assertEqual(actual_output1.status_code, 200)
